@@ -1,12 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getUsersRequest} from "../actions/users";
+import {getUsersRequest, createUserRequest} from "../actions/users";
 import UserList from './UserList'
 import NewUserForm from './NewUserForm';
 
 type Props = {
     users: any,
     getUsersRequest: () => void
+    createUserRequest: (input: { firstName: string, lastName: string }) => void
 }
 
 class App extends React.Component<Props> {
@@ -16,7 +17,7 @@ class App extends React.Component<Props> {
     }
 
     handleSubmit = ({firstName, lastName}: { firstName: string, lastName: string }) => {
-        console.log(firstName, lastName)
+        this.props.createUserRequest({firstName:firstName, lastName:lastName})
     }
 
 
@@ -37,5 +38,6 @@ class App extends React.Component<Props> {
 
 // @ts-ignore
 export default connect(({users}) => ({users}), {
-    getUsersRequest
+    getUsersRequest,
+    createUserRequest
 })(App)

@@ -12,9 +12,6 @@ type Props = {
 
 
 class NewUserForm extends Component<Props> {
-    constructor(props: Props) {
-        super(props)
-    }
 
 
     state = {

@@ -28,7 +28,9 @@ const UsersList = ({users}) => {
                                 {user.firstName} {user.lastName}
                             </div>
                             <div>
-                                <Button outline color="danger">Delete</Button>
+                                <Button outline color="danger">
+                                    Delete
+                                </Button>
                             </div>
                         </section>
                     </ListGroupItem>)

@@ -7,3 +7,11 @@ export const getUsers = () => {
         }
     })
 };
+
+
+export const createUser = ({firstName, lastName}: { firstName: string, lastName: string }) => {
+    return axios.post('/users', {
+        firstName,
+        lastName
+    })
+}
