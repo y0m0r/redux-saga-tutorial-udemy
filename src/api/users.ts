@@ -15,3 +15,7 @@ export const createUser = ({firstName, lastName}: { firstName: string, lastName:
         lastName
     })
 }
+
+export const deleteUser =(userId:number) => {
+    return axios.delete(`/users/${userId}`)
+}
