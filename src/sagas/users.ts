@@ -9,9 +9,9 @@ function* getUsers(): Generator {
             // @ts-ignore
             items: result.data.data
         }));
-
     } catch (e) {
-        console.log(e)
+        yield put(actions.usersError({error: "An error occurred when tying get user"}))
+
     }
 }
 
@@ -24,7 +24,8 @@ function* createUser(action: any) {
         yield call(api.createUser, {firstName: action.payload.firstName, lastName: action.payload.lastName})
         yield call(getUsers)
     } catch (e) {
-        console.log(e)
+        yield put(actions.usersError({error: "An error occurred when tying create user"}))
+
     }
 }
 
@@ -32,12 +33,12 @@ function* watchCreateUserRequest() {
     yield takeLatest(actions.Types.CREATE_USER_REQUEST, createUser);
 }
 
-function* deleteUser({userId}: {userId:number}) {
-    try{
+function* deleteUser({userId}: { userId: number }) {
+    try {
         yield call(api.deleteUser, userId)
         yield call(getUsers)
-    }catch(e){
-        console.log(e)
+    } catch (e) {
+        yield put(actions.usersError({error: "An error occurred when tying delete the user"}))
     }
 
 

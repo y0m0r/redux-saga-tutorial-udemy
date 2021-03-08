@@ -5,18 +5,29 @@ type ItemType = {
 }
 
 type StateType = {
-    items: ItemType[]
+    items: ItemType[],
+    error: string
 }
 
 const INITIAL_STATE = {
-    items: []
+    items: [],
+    error: ''
 }
 const users = (state: StateType = INITIAL_STATE, action: Action) => {
     console.log("reducer", action.type)
     switch (action.type) {
         case Types.GET_USERS_SUCCESS : {
             return {
-                items: action.payload.items
+                ...state,
+                items: action.payload.items,
+                error: ''
+            }
+        }
+        case Types.USERS_ERROR: {
+            console.log(action.payload.error)
+            return {
+                ...state,
+                error: action.payload.error
             }
         }
         default: {
